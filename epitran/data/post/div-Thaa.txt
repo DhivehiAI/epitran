@@ -1,0 +1,74 @@
+::vowel:: = a|aː|i|iː|u|uː|e|eː|o|o̞ː
+::consonant:: = h|ʂ|n|ɾ|b|ɭ|k|ʋ|m|f|d̪|t̪|l|ɡ|ɲ|s|ɖ|z|ʈ|j|p|d͡ʒ|t͡ʃ|θ|ħ|x|ð|ʒ|ʃ|sˤ|dˤ|tˤ|ðˤ|ʕ|ɣ|q|w|ɳ
+
+
+% remove nulls
+∅ -> 0 / _
+
+
+
+
+% alif/shaviyani sukun rules todo
+
+% nasalise if followed by haa, alif(vowel)
+<G> -> ŋ / _ \s?(::vowel::|h)
+
+% geminate the next consonant for all other cases
+% TODO
+% G(?P<con>(::consonant::)) ->  / _
+
+% at boundary
+<G> -> ʔ /  _ #
+
+% delete the rest
+% G -> ʔ / _
+
+
+
+
+% Thaa sukun rules
+jt̪ -> jʔ / _ (\s|#)
+
+
+
+% Noonu Sukun Rules
+
+% before a palatal-alveolar
+n -> ɲ / _ d͡ʒ
+
+% at end boundary or before haa, alif(vowel), gaaf, kaaf
+n -> ŋ / _ (#|::vowel::|h|ɡ|k)
+
+% before dhaalu, thaa
+% n -> n / _ (d̪|t̪)
+
+% before before daviyani, taviyani
+n -> ɳ / _ (ɖ|ʈ)
+
+% before bilabial consonant (baa, paviyani)
+n -> m / _ (b|p)
+
+% before vaavu, faafu
+n -> ɱ / _ (ʋ|f)
+
+% geminate on noonu, meemu
+n -> nn / _ n
+n -> mm / _ m
+
+
+
+
+% Unsounded Raa
+ɾ -> 0 / (::vowel::) _ (::consonant::)
+
+% Empty raa at boundary -er -ur
+(::vowel::)ɾ -> əː /  _ (\s|#)
+
+
+
+
+% Unsounded g
+ɡ -> 0 / (::consonant::) _ #
+
+
+
