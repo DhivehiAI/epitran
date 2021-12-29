@@ -1,31 +1,26 @@
 ::vowel:: = a|aː|i|iː|u|uː|e|eː|o|o̞ː
 ::consonant:: = h|ʂ|n|ɾ|b|ɭ|k|ʋ|m|f|d̪|t̪|l|ɡ|ɲ|s|ɖ|z|ʈ|j|p|d͡ʒ|t͡ʃ|θ|ħ|x|ð|ʒ|ʃ|sˤ|dˤ|tˤ|ðˤ|ʕ|ɣ|q|w|ɳ
 
+% ---------------------------------------------------
 % General cleanup
 
-% remove nulls
+% Remove nulls
 ∅ -> 0 / _
 
 % Unsounded Raa
 ɾ -> 0 / (::vowel::) _ (::consonant::)
-
-% Empty raa at boundary -er -ur
 (::vowel::)ɾ -> əː /  _ (#|::consonant::)
 
-% Unsounded g at boundary or unpaired
+% Unsounded Gaaf
 ɡ -> 0 / (::vowel::) _ (#|::consonant::)
 
 
-
-
 % ---------------------------------------------------
+% Thaa sukun rules, mapped to <TS>
+% Relies on preceding vowel
 
-% Thaa sukun rules
-% probably need to move this up since it will
-% mutate to <AS> on some cases
-
-
-% preceeded by other vowels
+% preceeded by other vowels, behaves like <AS>
+% must cascade those rules after
 <TS> -> <AS> / (i|iː|e|eː) _
 <TS> -> i<AS> / (::vowel::) _
 
@@ -33,24 +28,20 @@
 <TS> -> jʔ / _
 
 
-
-
 % ---------------------------------------------------
-
-% alif/shaviyani sukun rules todo
+% alif and shaviyani sukun rules, mapped to <AS>
 
 % nasalise if followed by haa, alif(vowel)
 <AS> -> ŋ / _ \s?(::vowel::|h)
 
-% <AS> followed by ::consonant:: is supposed to
-% geminate the consonant.
+% Next consonant will geminate
+% Still needs some work
 
 (?P<sw1><AS>)\s?(?P<sw2>::consonant::) -> 0 / _
 <AS> -> : / (::consonant::) _ (::vowel::)
 
-% at boundary
 % alif sukun is supposed to drop a coda /k/ at _ # sometimes
-% which we ignore and default to a stop instead
+% at boundary which we ignore fallback to a stop instead
 <AS> -> ʔ /  _
 
 
