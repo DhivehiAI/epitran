@@ -24,9 +24,6 @@
 % probably need to move this up since it will
 % mutate to <AS> on some cases
 
-% preceeded by abafili and aabaafili
-a<TS> -> æʔ / _
-aː<TS> -> æ:ʔ / _
 
 % preceeded by other vowels
 <TS> -> <AS> / (i|iː|e|eː) _
