@@ -1,15 +1,10 @@
 ::vowel:: = a|aː|i|iː|u|uː|e|eː|o|o̞ː
 ::consonant:: = h|ʂ|n|ɾ|b|ɭ|k|ʋ|m|f|d̪|t̪|l|ɡ|ɲ|s|ɖ|z|ʈ|j|p|d͡ʒ|t͡ʃ|θ|ħ|x|ð|ʒ|ʃ|sˤ|dˤ|tˤ|ðˤ|ʕ|ɣ|q|w|ɳ
 
+% General cleanup
 
 % remove nulls
 ∅ -> 0 / _
-
-
-% ---------------------------------------------------
-
-% some more rules for
-% unsounded consonants
 
 % Unsounded Raa
 ɾ -> 0 / (::vowel::) _ (::consonant::)
@@ -21,11 +16,33 @@
 ɡ -> 0 / (::vowel::) _ (#|::consonant::)
 
 
+
+
+% ---------------------------------------------------
+
+% Thaa sukun rules
+% probably need to move this up since it will
+% mutate to <AS> on some cases
+
+% preceeded by abafili and aabaafili
+a<TS> -> æʔ / _
+aː<TS> -> æ:ʔ / _
+
+% preceeded by other vowels
+<TS> -> <AS> / (i|iː|e|eː) _
+<TS> -> i<AS> / (::vowel::) _
+
+% fallback
+<TS> -> jʔ / _
+
+
+
+
 % ---------------------------------------------------
 
 % alif/shaviyani sukun rules todo
 
-% nasalise if followed by haa, alif(vowel) moved to mapping
+% nasalise if followed by haa, alif(vowel)
 <AS> -> ŋ / _ \s?(::vowel::|h)
 
 % <AS> followed by ::consonant:: is supposed to
@@ -40,19 +57,7 @@
 <AS> -> ʔ /  _
 
 
-% ---------------------------------------------------
 
-% Thaa sukun rules
-% probably need to move this up since it will
-% mutate to <AS> on some cases
-a<TS> -> æʔ / _
-aː<TS> -> æ:ʔ / _
-<TS> -> ʔ / (i|iː|e|eː) _
-<TS> -> jʔ / _
-
-% not sure what to do with these yet
-%jt̪
-%jt̪ -> jʔ / _ (\s|#)
 
 
 
