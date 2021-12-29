@@ -6,69 +6,118 @@
 ∅ -> 0 / _
 
 
+% ---------------------------------------------------
 
-
-% alif/shaviyani sukun rules todo
-
-% nasalise if followed by haa, alif(vowel)
-<G> -> ŋ / _ \s?(::vowel::|h)
-
-% geminate the next consonant for all other cases
-% TODO
-% G(?P<con>(::consonant::)) ->  / _
-
-% at boundary
-<G> -> ʔ /  _ #
-
-% delete the rest
-% G -> ʔ / _
-
-
-
-
-% Thaa sukun rules
-jt̪ -> jʔ / _ (\s|#)
-
-
-
-% Noonu Sukun Rules
-
-% before a palatal-alveolar
-n -> ɲ / _ d͡ʒ
-
-% at end boundary or before haa, alif(vowel), gaaf, kaaf
-n -> ŋ / _ (#|::vowel::|h|ɡ|k)
-
-% before dhaalu, thaa
-% n -> n / _ (d̪|t̪)
-
-% before before daviyani, taviyani
-n -> ɳ / _ (ɖ|ʈ)
-
-% before bilabial consonant (baa, paviyani)
-n -> m / _ (b|p)
-
-% before vaavu, faafu
-n -> ɱ / _ (ʋ|f)
-
-% geminate on noonu, meemu
-n -> nn / _ n
-n -> mm / _ m
-
-
-
+% some more rules for
+% unsounded consonants
 
 % Unsounded Raa
 ɾ -> 0 / (::vowel::) _ (::consonant::)
 
 % Empty raa at boundary -er -ur
-(::vowel::)ɾ -> əː /  _ (\s|#)
+(::vowel::)ɾ -> əː /  _ \s?(#|::consonant::)
+
+% Unsounded g at boundary or unpaired
+ɡ -> 0 / (::vowel::) _ \s?(#|::consonant::)
 
 
+% ---------------------------------------------------
+
+% alif/shaviyani sukun rules todo
+
+% nasalise if followed by haa, alif(vowel)
+<AS> -> ŋ / _ \s?(::vowel::|h)
+
+% <AS> followed by ::consonant:: is supposed to
+% geminate the consonant. not sure how to
+% pull that off in regex, so manually adding rules here
+
+<AS> -> h / _ \s?h
+<AS> -> ʂ / _ \s?ʂ
+<AS> -> n / _ \s?n
+<AS> -> ɾ / _ \s?ɾ
+<AS> -> b / _ \s?b
+<AS> -> ɭ / _ \s?ɭ
+<AS> -> k / _ \s?k
+<AS> -> ʋ / _ \s?ʋ
+<AS> -> m / _ \s?m
+<AS> -> f / _ \s?f
+<AS> -> d̪ / _ \s?d̪
+<AS> -> t̪ / _ \s?t̪
+<AS> -> l / _ \s?l
+<AS> -> ɡ / _ \s?ɡ
+<AS> -> ɲ / _ \s?ɲ
+<AS> -> s / _ \s?s
+<AS> -> ɖ / _ \s?ɖ
+<AS> -> z / _ \s?z
+<AS> -> ʈ / _ \s?ʈ
+<AS> -> j / _ \s?j
+<AS> -> p / _ \s?p
+<AS> -> d / _ \s?d͡ʒ
+<AS> -> t / _ \s?t͡ʃ
+<AS> -> θ / _ \s?θ
+<AS> -> ħ / _ \s?ħ
+<AS> -> x / _ \s?x
+<AS> -> ð / _ \s?ð
+<AS> -> ʒ / _ \s?ʒ
+<AS> -> ʃ / _ \s?ʃ
+<AS> -> sˤ / _ \s?sˤ
+<AS> -> dˤ / _ \s?dˤ
+<AS> -> tˤ / _ \s?tˤ
+<AS> -> ðˤ / _ \s?ðˤ
+<AS> -> ʕ / _ \s?ʕ
+<AS> -> ɣ / _ \s?ɣ
+<AS> -> q / _ \s?q
+<AS> -> w / _ \s?w
+<AS> -> ɳ / _ \s?ɳ
+
+% at boundary
+% alif sukun is supposed to drop a coda /k/ at _ # sometimes
+% which we ignore and default to a stop instead
+<AS> -> ʔ /  _
 
 
-% Unsounded g
-ɡ -> 0 / (::consonant::) _ #
+% ---------------------------------------------------
+
+% Noonu Sukun Rules
+
+% before a palatal-alveolar, it becomes a palatal nasal
+<NS> -> ɲ / _ d͡ʒ
+
+% at end boundary or before haa, alif(vowel), gaaf, kaaf
+<NS> -> ŋ / _ \s?(#|h|ɡ|k)
+
+% before dhaalu, thaa
+<NS> -> n / _ \s?(d̪|t̪)
+
+% before before daviyani, taviyani
+<NS> -> ɳ / _ \s?(ɖ|ʈ)
+
+% before bilabial consonant (baa, paviyani)
+<NS> -> m / _ \s?(b|p)
+
+% before vaavu, faafu
+<NS> -> ɱ / _ \s?(ʋ|f)
+
+% geminate on noonu, meemu
+<NS>\s?n -> nn / _
+<NS>\s?m -> mm / _
+
+% sub the rest
+<NS> -> n / _
+
+
+% ---------------------------------------------------
+
+% Thaa sukun rules
+a<TS> -> æʔ / _
+aː<TS> -> æ:ʔ / _
+<TS> -> ʔ / (i|iː|e|eː) _
+<TS> -> jʔ / _
+
+% not sure what to do with these yet
+%jt̪
+%jt̪ -> jʔ / _ (\s|#)
 
 
 
