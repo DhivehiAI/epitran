@@ -26,7 +26,7 @@
 % alif/shaviyani sukun rules todo
 
 % nasalise if followed by haa, alif(vowel) moved to mapping
-% <AS> -> ŋ / _ \s?(::vowel::|h)
+<AS> -> ŋ / _ \s?(::vowel::|h)
 
 % <AS> followed by ::consonant:: is supposed to
 % geminate the consonant.
@@ -43,6 +43,8 @@
 % ---------------------------------------------------
 
 % Thaa sukun rules
+% probably need to move this up since it will
+% mutate to <AS> on some cases
 a<TS> -> æʔ / _
 aː<TS> -> æ:ʔ / _
 <TS> -> ʔ / (i|iː|e|eː) _
